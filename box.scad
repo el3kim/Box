@@ -5,7 +5,7 @@
 //jack datasheet http://www.tme.eu/en/Document/241958aabe0df011f74a316a9e79eb51/KLBM-3.pdf
 use <./ArduinoNanoXY/ArduinoNanoXY.scad>;
 use <./millefori.scad>;
-Xbox=95;
+Xbox=160;
 Ybox=55;
 Zbox=30;
 spessore=3;
@@ -23,7 +23,7 @@ spessoreMillefori=2;
 Dvite=4.4;
 TestaVite=8;
 DadoVite=8.5;
-tolleranza=.5;
+tolleranza=1;
 
 Pvite=[ [0,0,0],];
 DistanzialeInf=[ 
@@ -38,7 +38,7 @@ DistanzialeSup=[
 	[Xbox-Ldistanziale,Ybox-Ldistanziale,spessore] ];
 
 //top
-translate ([Xbox+10,0,0]){
+translate ([0,Ybox+10,0]){
 	difference() {
 	union(){
 		minkowski(){
@@ -72,7 +72,8 @@ union() {
 		translate([Ldistanziale,Ldistanziale,-spessore]/2) cylinder(h=Zbox,d=Dvite);
 	}
 }
-
+e=Ldistanziale+((Xbox-Ldistanziale*2)/Njack*1-(Xbox-Ldistanziale*2)/Njack/2);
+echo(e);
 //jack
 for(j=[1:1:Njack]) translate([Ldistanziale+((Xbox-Ldistanziale*2)/Njack*j-(Xbox-Ldistanziale*2)/Njack/2),5+Ybox+3-33.5,(Zbox+spessore)/2]) rotate([-90,0,0]) cylinder (h=33.5, d=Djack);
 //midi	
